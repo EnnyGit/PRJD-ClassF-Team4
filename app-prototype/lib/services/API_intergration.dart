@@ -12,6 +12,7 @@ class ApiIntergration {
   String location; //TODO: Pak location van phone?
   int level;
   int sleepScore;
+  String displayName;
 
   ApiIntergration({this.accessToken});
 
@@ -48,6 +49,7 @@ class ApiIntergration {
 
       Map<String, dynamic> data = json.decode(response.body);
       age = data['user']['age'];
+      displayName = data['user']['displayName'];
     } 
     catch (e){
       print('caught error: $e');
