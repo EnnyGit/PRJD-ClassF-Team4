@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
             ),
             Center(
               child: Text(
-                'Enny Pogchamp',
+                '${data['displayName']}',
                 style: TextStyle(
                   fontSize: 22,
                   color: Colors.black,

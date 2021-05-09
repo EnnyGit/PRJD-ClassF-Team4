@@ -23,7 +23,8 @@ class _LoadingState extends State<Loading> {
       'endurance': fitbitApi.endurance,
       'speed': fitbitApi.speed,
       'sleep': fitbitApi.sleepScore,
-      'level': (fitbitApi.endurance + fitbitApi.speed + fitbitApi.sleepScore) / 3
+      'level': (fitbitApi.endurance + fitbitApi.speed + fitbitApi.sleepScore) / 3,
+      'displayName': fitbitApi.displayName
     });
   }
 
