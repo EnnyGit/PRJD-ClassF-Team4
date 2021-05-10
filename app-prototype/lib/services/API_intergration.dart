@@ -30,7 +30,7 @@ class ApiIntergration {
 
       for (var heartActivity in data['activities-heart']) {
         var tempHeartRate = heartActivity['value']['restingHeartRate'];
-        if(tempHeartRate != null){
+        if (tempHeartRate != null) {
           restingHeartRate = tempHeartRate;
           break;
         }
@@ -43,8 +43,8 @@ class ApiIntergration {
   Future<void> getAge() async {
     try {
       Response response = await get(
-        Uri.parse("https://api.fitbit.com/1/user/99YY8D/profile.json"),
-        headers: {"Authorization": "Bearer " + accessToken});
+          Uri.parse("https://api.fitbit.com/1/user/99YY8D/profile.json"),
+          headers: {"Authorization": "Bearer " + accessToken});
 
       Map<String, dynamic> data = json.decode(response.body);
       age = data['user']['age'];
