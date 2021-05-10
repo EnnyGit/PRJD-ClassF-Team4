@@ -29,9 +29,11 @@ class ApiIntergration {
       Map<String, dynamic> data = json.decode(response.body);
 
       for (var heartActivity in data['activities-heart']) {
-        restingHeartRate = heartActivity['value']['restingHeartRate'] == null
-            ? restingHeartRate
-            : heartActivity['value']['restingHeartRate'];
+        var tempHeartRate = heartActivity['value']['restingHeartRate'];
+        if(tempHeartRate != null){
+          restingHeartRate = tempHeartRate;
+          break;
+        }
       }
     } catch (e) {
       print('caught error: $e');
@@ -41,8 +43,8 @@ class ApiIntergration {
   Future<void> getAge() async {
     try {
       Response response = await get(
-          Uri.parse("https://api.fitbit.com/1/user/99YY8D/profile.json"),
-          headers: {"Authorization": "Bearer " + accessToken});
+        Uri.parse("https://api.fitbit.com/1/user/99YY8D/profile.json"),
+        headers: {"Authorization": "Bearer " + accessToken});
 
       Map<String, dynamic> data = json.decode(response.body);
       age = data['user']['age'];
@@ -53,7 +55,10 @@ class ApiIntergration {
   }
 
   void getEndurance() {
-    endurance = 15.3 * (220 - age) / restingHeartRate;
+    print('Age: $age RHR: $restingHeartRate');
+    double vomax = 15.3 * (220 - age) / restingHeartRate;
+    print('test');
+    endurance = (vomax - 32) * 3.33;
   }
 
   Future<void> getSpeed() async {
@@ -71,9 +76,7 @@ class ApiIntergration {
       double riegelTime5k = data['activities'][0]['duration'] /
           1000 *
           pow((5 / data['activities'][0]['distance']), 1.06);
-      print('$riegelTime5k');
       double pace = riegelTime5k / 5;
-      print('$pace');
       speed = 0.1428571429 * (1000 - pace);
     } catch (e) {
       print('caught error: $e');
