@@ -17,7 +17,22 @@ class _WorkoutState extends State<Workout> {
         elevation: 0,
         toolbarHeight: 50,
       ),
-      body: Text('Workout screen'),
+      body: Column(
+        children: <Widget>[
+          SizedBox(height: 40),
+          Center(
+            child: Text(
+              'Runners Workout',
+              style: TextStyle(
+                color: Colors.blue[800],
+                letterSpacing: 3.0,
+                fontSize: 40.0,
+                fontWeight: FontWeight.bold,
+              ),
+            )
+          )
+        ],
+      ),
     );
   }
 }

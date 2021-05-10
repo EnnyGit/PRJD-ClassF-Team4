@@ -19,11 +19,12 @@ class _LoadingState extends State<Loading> {
     fitbitApi.getEndurance();
     await fitbitApi.getSpeed();
     await fitbitApi.getSleepScore();
+
     Navigator.pushReplacementNamed(context, '/home', arguments: {
       'endurance': fitbitApi.endurance,
       'speed': fitbitApi.speed,
       'sleep': fitbitApi.sleepScore,
-      'level': (fitbitApi.endurance + fitbitApi.speed + fitbitApi.sleepScore) / 3,
+      'level': ((fitbitApi.endurance * 0.4 )+ (fitbitApi.speed * 0.4) + (fitbitApi.sleepScore * 0.2)),
       'displayName': fitbitApi.displayName
     });
   }

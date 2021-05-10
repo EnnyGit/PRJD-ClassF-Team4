@@ -60,7 +60,7 @@ class _HomeState extends State<Home> {
             Row(children: <Widget>[
               SizedBox(width: 10.0),
               Text(
-                'Level: ${data['level'].toStringAsFixed(0)}',
+                'Score: ${data['level'].toStringAsFixed(0)}',
                 style: TextStyle(
                   color: Colors.blue[800],
                   letterSpacing: 2.0,

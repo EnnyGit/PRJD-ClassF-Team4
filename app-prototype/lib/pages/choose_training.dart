@@ -39,7 +39,9 @@ class _ChooseTrainingState extends State<ChooseTraining> {
                 subtitle: Text(trainings[index].description),
                 trailing: Icon(Icons.navigate_next),
                 isThreeLine: true,
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, '/workout');
+                },
               ),
             ),
           );
