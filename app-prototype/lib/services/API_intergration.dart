@@ -63,8 +63,8 @@ class ApiIntergration {
 
   Future<void> getSpeed() async {
     try {
-      // The max of the number of entries returned (maximum: 20). Required.
-      String limit = '1';
+      //The max of the number of entries returned (maximum: 100). Required.
+      String limit = '100';
 
       Response response = await get(
           Uri.parse(
@@ -73,9 +73,18 @@ class ApiIntergration {
 
       Map<String, dynamic> data = json.decode(response.body);
 
-      double riegelTime5k = data['activities'][0]['duration'] /
+      var runActivity;
+      for (var activity in data['activities']) {
+        var tempActivity = activity['activityName'];
+        if (tempActivity == 'Run') {
+          runActivity = activity;
+          break;
+        }
+      }
+
+      double riegelTime5k = runActivity['duration'] /
           1000 *
-          pow((5 / data['activities'][0]['distance']), 1.06);
+          pow((5 / runActivity['distance']), 1.06);
       double pace = riegelTime5k / 5;
       speed = 0.1428571429 * (1000 - pace);
     } catch (e) {
