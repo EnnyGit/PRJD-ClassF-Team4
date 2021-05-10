@@ -6,6 +6,9 @@ class Workout extends StatefulWidget {
 }
 
 class _WorkoutState extends State<Workout> {
+
+  double rating = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +33,32 @@ class _WorkoutState extends State<Workout> {
                 fontWeight: FontWeight.bold,
               ),
             )
-          )
+          ),
+          CircularProgressIndicator(
+            value: rating/100,
+          ),
+          SizedBox(
+            child: LinearProgressIndicator(
+              value: rating/100,
+              minHeight: 10,
+
+            ),
+            width: 200,
+          ),
+          Center(
+            child: Slider(
+              value: rating,
+              onChanged: (newRating) {
+                setState(() {
+                  rating = newRating;
+                });
+              },  
+              min: 0,
+              max: 100,
+              //divisions: 10,
+              label: "${rating.toStringAsFixed(0)}",
+            ),
+          ),
         ],
       ),
     );

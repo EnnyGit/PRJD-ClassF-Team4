@@ -68,19 +68,46 @@ class _HomeState extends State<Home> {
                   fontWeight: FontWeight.bold
                   ),
                 ),
-              SizedBox(width: 90.0),
+              SizedBox(width: 75.0),
               Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    'Endurance: ${data['endurance'].toStringAsFixed(0)}',
-                    style: TextStyle(
-                      color: Colors.lightGreen[900],
-                      letterSpacing: 2.0,
-                      fontSize: 18,
+                  Row(
+                    children: <Widget>[
+                    Text(
+                      '${data['sleep']}',
+                      style: TextStyle(
+                        color: Colors.blue[800],
+                        letterSpacing: 2.0,
+                        fontSize: 18,  
+                        fontWeight: FontWeight.bold
+                      ),
                     ),
+                    SizedBox(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+                        child: LinearProgressIndicator(
+                          value: data['endurance']/100,
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
+                        ),
+                      ),
+                      width: 120,
+                      height: 7,
+                      ),                   
+                    ],
                   ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(28, 0, 0, 0),
+                    child: Text(
+                      'Endurance',
+                      style: TextStyle(
+                        color: Colors.blue[800],
+                        letterSpacing: 2.0,
+                        fontSize: 13,  
+                        fontWeight: FontWeight.bold
+                      )                 
+                    ),
+                  ),                  
                   Text(
                     'Sleep: ${data['sleep']}',
                     style: TextStyle(
