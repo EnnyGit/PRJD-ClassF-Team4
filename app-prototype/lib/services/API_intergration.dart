@@ -36,7 +36,7 @@ class ApiIntergration {
         }
       }
     } catch (e) {
-      print('caught error: $e');
+      print('caught error in getRestingHeartRate(): $e');
     }
   }
 
@@ -50,14 +50,13 @@ class ApiIntergration {
       age = data['user']['age'];
       displayName = data['user']['displayName'];
     } catch (e) {
-      print('caught error: $e');
+      print('caught error in getAge(): $e');
     }
   }
 
   void getEndurance() {
     print('Age: $age RHR: $restingHeartRate');
     double vomax = 15.3 * (220 - age) / restingHeartRate;
-    print('test');
     endurance = (vomax - 32) * 3.33;
   }
 
@@ -82,14 +81,19 @@ class ApiIntergration {
         }
       }
 
-      double riegelTime5k = runActivity['duration'] /
-          1000 *
-          pow((5 / runActivity['distance']), 1.06);
-      double pace = riegelTime5k / 5;
-      speed = 0.1428571429 * (1000 - pace);
+      speed = 0.1428571429 *
+          (1000 -
+              calculateRiegel5K(
+                  runActivity['duration'].toDouble(), runActivity['distance']));
     } catch (e) {
-      print('caught error: $e');
+      print('caught error in getSpeed(): $e');
     }
+  }
+
+  double calculateRiegel5K(double duration, double distance) {
+    double riegelTime5k = duration / 1000 * (pow((5 / distance), 1.06));
+    double riegelPace = riegelTime5k / 5;
+    return riegelPace;
   }
 
   Future<void> getSleepScore() async {
@@ -103,7 +107,7 @@ class ApiIntergration {
 
       sleepScore = data['sleep'][0]['efficiency'];
     } catch (e) {
-      print('caught error: $e');
+      print('caught error in getSleepScore: $e');
     }
   }
 }
