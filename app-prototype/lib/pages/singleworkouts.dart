@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ninja_id_project/pages/workouttemp.dart';
+import 'package:ninja_id_project/pages/workoutpage.dart';
 import 'package:ninja_id_project/services/training.dart';
 
 class SingleWorkouts extends StatelessWidget {

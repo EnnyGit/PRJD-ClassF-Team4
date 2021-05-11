@@ -104,73 +104,82 @@ class _HomeState extends State<Home> {
                 ),
               ]
             ),          
-            SizedBox(height: 40.0),
+            SizedBox(height: 25.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
-                child: ElevatedButton.icon(
-                  icon: Icon(
-                    Icons.fitness_center,
-                    color: Colors.grey[500],
-                    size: 40
-                  ),
-                  label: Text('Training'),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 53, vertical: 10),
-                    textStyle: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: ElevatedButton.icon(
+                    icon: Icon(
+                      Icons.fitness_center,
+                      color: Colors.grey[500],
+                      size: 40
                     ),
+                    label: Text('Training'),
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 53, vertical: 10),
+                      textStyle: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/choose_training');
+                    },
                   ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/choose_training');
-                  },
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
-                child: ElevatedButton.icon(
-                  icon: Icon(
-                    Icons.check,
-                    color: Colors.green,
-                    size: 40
-                  ),
-                  label: Text('Goals'),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 70, vertical: 10),
-                    textStyle: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: ElevatedButton.icon(
+                    icon: Icon(
+                      Icons.check,
+                      color: Colors.green,
+                      size: 40
                     ),
+                    label: Text('Goals'),
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 70, vertical: 10),
+                      textStyle: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/goal');
+                    },
                   ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/goal');
-                  },
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
-                child: ElevatedButton.icon(
-                  icon: Icon(
-                    Icons.graphic_eq,
-                    color: Colors.grey[500],
-                    size: 40
-                  ),
-                  label: Text('Statistics'),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 45, vertical: 10),
-                    textStyle: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: ElevatedButton.icon(
+                    icon: Icon(
+                      Icons.graphic_eq,
+                      color: Colors.grey[500],
+                      size: 40
                     ),
+                    label: Text('Statistics'),
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 45, vertical: 10),
+                      textStyle: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/statistics');
+                    },
                   ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/statistics');
-                  },
                 ),
               ),
             ),
