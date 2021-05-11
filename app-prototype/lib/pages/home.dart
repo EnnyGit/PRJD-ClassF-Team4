@@ -59,71 +59,47 @@ class _HomeState extends State<Home> {
             SizedBox(height: 60.0),
             Row(children: <Widget>[
               SizedBox(width: 10.0),
-              Text(
-                'Score: ${data['level'].toStringAsFixed(0)}',
-                style: TextStyle(
-                  color: Colors.blue[800],
-                  letterSpacing: 2.0,
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold
-                  ),
+              SizedBox(
+                height: 100,
+                child: Stack(
+                  children: <Widget>[
+                    Center(
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 10,
+                          value: data['level']/100,
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+                        child: Text(
+                          '${data['level'].toStringAsFixed(0)}',
+                          style: TextStyle(
+                            color: Colors.black,
+                            letterSpacing: 2.0,
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
+              ),
               SizedBox(width: 75.0),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                    Text(
-                      '${data['sleep']}',
-                      style: TextStyle(
-                        color: Colors.blue[800],
-                        letterSpacing: 2.0,
-                        fontSize: 18,  
-                        fontWeight: FontWeight.bold
-                      ),
-                    ),
-                    SizedBox(
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-                        child: LinearProgressIndicator(
-                          value: data['endurance']/100,
-                          valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
-                        ),
-                      ),
-                      width: 120,
-                      height: 7,
-                      ),                   
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(28, 0, 0, 0),
-                    child: Text(
-                      'Endurance',
-                      style: TextStyle(
-                        color: Colors.blue[800],
-                        letterSpacing: 2.0,
-                        fontSize: 13,  
-                        fontWeight: FontWeight.bold
-                      )                 
-                    ),
-                  ),                  
-                  Text(
-                    'Sleep: ${data['sleep']}',
-                    style: TextStyle(
-                      color: Colors.purple[600],
-                      letterSpacing: 2.0,
-                      fontSize: 18,  
-                    )                 
-                  ),
-                  Text(
-                    'Speed: ${data['speed'].toStringAsFixed(0)}',
-                    style: TextStyle(
-                      color: Colors.amber[800],
-                      letterSpacing: 2.0,
-                      fontSize: 18, 
-                    )                   
-                  ),
+                  StatBar(statData: data['endurance'], color: Colors.green),
+                  StatText(statText: 'Endurance'),    
+                  StatBar(statData: data['sleep'], color: Colors.purple,),
+                  StatText(statText: 'Sleep'),  
+                  StatBar(statData: data['speed'], color: Colors.amber,),
+                  StatText(statText: 'Speed')                                         
                   ],
                 ),
               ]
@@ -201,6 +177,70 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class StatText extends StatelessWidget {
+  const StatText({
+    Key key,
+    @required this.statText,
+  }) : super(key: key);
+
+  final String statText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(28, 0, 0, 0),
+      child: Text(
+        statText,
+        style: TextStyle(
+          color: Colors.blue[800],
+          letterSpacing: 2.0,
+          fontSize: 13,  
+          fontWeight: FontWeight.bold
+        )                 
+      ),
+    );
+  }
+}
+
+class StatBar extends StatelessWidget {
+  const StatBar({
+    Key key,
+    @required this.statData,
+    @required this.color
+  }) : super(key: key);
+
+  final dynamic statData;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+      Text(
+        '${statData.toStringAsFixed(0)}',
+        style: TextStyle(
+          color: Colors.blue[800],
+          letterSpacing: 2.0,
+          fontSize: 18,  
+          fontWeight: FontWeight.bold
+        ),
+      ),
+      SizedBox(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+          child: LinearProgressIndicator(
+            value: statData/100,
+            valueColor: AlwaysStoppedAnimation<Color>(color),
+          ),
+        ),
+        width: 120,
+        height: 7,
+        ),                   
+      ],
     );
   }
 }

@@ -7,6 +7,7 @@ class Workout extends StatefulWidget {
 
 class _WorkoutState extends State<Workout> {
 
+  
   double rating = 0;
 
   @override
