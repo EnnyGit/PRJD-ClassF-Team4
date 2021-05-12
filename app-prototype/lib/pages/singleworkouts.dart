@@ -21,14 +21,7 @@ class SingleWorkouts extends StatelessWidget {
       details: 'stretching the shins and arches of the feet',
       description: 'To Do Kneel on your mat with your toes curled under. Sit back on your heels (you can place a yoga block or pillow between your heels and glutes). Breathe deeply for 10 counts. Then, point your toes, place your hands on the mat behind you, and lean back as you attempt to lift your knees off the mat. If your knees don’t come far up, don’t worry. You’ll still feel a nice stretch in your shins and arches.'),
 
-      Training(name: "Yasso 800s",
-      color: Colors.yellow,
-      duration: '20-25 min',
-      icon: 'assets/sport.png',
-      image: 'assets/boxing1.png', 
-      details: '8 to 10 * 800m with equal recovery jog',
-      description: 'Description'),
-
+      
       Training(name: "Interval jogging",
       color: Colors.yellow,
       duration: '60 min(based on stats)', //this needs to be based on stats
@@ -37,13 +30,13 @@ class SingleWorkouts extends StatelessWidget {
       details: '6 to 8 * 1,000m with with recovery jog(based on stats)',
       description: 'Alternate between periods of high-intensity exercise and lower-intensity, active or passive recovery.'),
 
-      Training(name: "Quarters",
+      Training(name: "Squats",
       color: Colors.purple,
-      duration: '30 min',
+      duration: '20 min', //maybe also based on stats?
       icon: 'assets/sport.png',
       image: 'assets/runner3.png',
-      details: '8 to 10 * 2 mins with 1-min recovery jog',
-      description: 'Description'),
+      details: '3 sets of 12',
+      description: 'Start standing with feet just wider than hip-width apart, toes pointed slightly out, and hands clasped at chest for balance. Initiate the movement by sending your hips back first, then bend knees to lower down as far as possible while keeping your chest lifted. You should lower down until thighs are at least parallel to floor. Press through heels and engage glutes to return back to the starting position.'),
 
       Training(name: "Cruise Intervals",
       color: Colors.red,
