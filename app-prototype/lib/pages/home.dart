@@ -25,8 +25,12 @@ class _HomeState extends State<Home> {
             SizedBox(height: 20),
             Center(
                 child: CircleAvatar(
-                  backgroundImage: AssetImage('assets/user2.jpg'),
-                  radius: 40.0,
+                  backgroundColor: Colors.blue[800],
+                  radius: 50.0,
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage('assets/user3.jpg'),
+                    radius: 47,
+                  ),
               ),
             ),
             Divider(
@@ -103,7 +107,7 @@ class _HomeState extends State<Home> {
                 ),
               ]
             ),          
-            SizedBox(height: 40.0),
+            SizedBox(height: 35.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
@@ -113,7 +117,7 @@ class _HomeState extends State<Home> {
                     icon: Icon(
                       Icons.fitness_center,
                       color: Colors.grey[500],
-                      size: 40
+                      size: 30
                     ),
                     label: Text('Training'),
                     style: ElevatedButton.styleFrom(
@@ -139,7 +143,7 @@ class _HomeState extends State<Home> {
                     icon: Icon(
                       Icons.check,
                       color: Colors.green,
-                      size: 40
+                      size: 30
                     ),
                     label: Text('Goals'),
                     style: ElevatedButton.styleFrom(
@@ -165,7 +169,7 @@ class _HomeState extends State<Home> {
                     icon: Icon(
                       Icons.graphic_eq,
                       color: Colors.grey[500],
-                      size: 40
+                      size: 30
                     ),
                     label: Text('Statistics'),
                     style: ElevatedButton.styleFrom(
