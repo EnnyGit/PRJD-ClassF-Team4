@@ -8,7 +8,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   Map data = {};
-
   int fitnessLevel = 0;
 
   @override
@@ -56,7 +55,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            SizedBox(height: 60.0),
+            SizedBox(height: 40.0),
             Row(children: <Widget>[
               SizedBox(width: 10.0),
               SizedBox(
@@ -104,7 +103,7 @@ class _HomeState extends State<Home> {
                 ),
               ]
             ),          
-            SizedBox(height: 25.0),
+            SizedBox(height: 40.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(

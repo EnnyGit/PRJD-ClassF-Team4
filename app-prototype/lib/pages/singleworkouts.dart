@@ -9,6 +9,10 @@ class SingleWorkouts extends StatelessWidget {
       Training(name: "Tempo Intervals", color: Colors.red, duration: '30 min', image: 'assets/runner2.png', details: '4 to 5 * 2,000m WITH 400m recovery jog', description: 'Description'),
       Training(name: "Yasso 800s", color: Colors.yellow, duration: '20-25 min',  image: 'assets/boxing1.png', details: '8 to 10 * 800m with equal recovery jog', description: 'Description'),
       Training(name: "Goal Pace Run", color: Colors.yellow, duration: '60 min',  image: 'assets/tennis1.png', details: '8 to 12 miles at marathon pace', description: 'Description'),
+      Training(name: "Quarters", color: Colors.purple, duration: '30 min',  image: 'assets/runner3.png', details: '8 to 10 * 2 mins with 1-min recovery jog', description: 'Description'),
+      Training(name: "Tempo Intervals", color: Colors.red, duration: '30 min', image: 'assets/runner2.png', details: '4 to 5 * 2,000m WITH 400m recovery jog', description: 'Description'),
+      Training(name: "Yasso 800s", color: Colors.yellow, duration: '20-25 min',  image: 'assets/boxing1.png', details: '8 to 10 * 800m with equal recovery jog', description: 'Description'),
+      Training(name: "Goal Pace Run", color: Colors.yellow, duration: '60 min',  image: 'assets/tennis1.png', details: '8 to 12 miles at marathon pace', description: 'Description'),
       Training(name: "Quarters", color: Colors.purple, duration: '30 min',  image: 'assets/runner3.png', details: '8 to 10 * 2 mins with 1-min recovery jog', description: 'Description')
     ];
 

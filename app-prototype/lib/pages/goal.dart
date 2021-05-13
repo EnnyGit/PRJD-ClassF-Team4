@@ -9,15 +9,56 @@ class _GoalState extends State<Goal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFE0EBEE),
+      backgroundColor: Colors.blue[300],
       appBar: AppBar(
         backgroundColor: Colors.blue[900],
-        title: Text('Your goals'),
+        title: Text('Workout'),
         centerTitle: true,
         elevation: 0,
         toolbarHeight: 50,
       ),
-      body: Text('Goals screen'),
+      body: Column(
+        children: <Widget>[
+          SizedBox(
+            height: 30,
+          ),
+          SizedBox(
+            width: 350,
+            child: Center(
+              child: Text(
+                "Goal:",
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: Colors.black,
+                  letterSpacing: 3.0,
+                  fontSize: 40.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Center(
+            child: Text(
+              "Marathon",
+              style: TextStyle(
+                color: Colors.black,
+                letterSpacing: 3.0,
+                fontSize: 20.0,
+              ),
+            ),
+          ),
+          Divider(
+            thickness: 1,
+            indent: 40,
+            endIndent: 40,
+            height: 50.0,
+            color: Colors.black,
+          ),         
+        ],
+      ),
     );
   }
 }

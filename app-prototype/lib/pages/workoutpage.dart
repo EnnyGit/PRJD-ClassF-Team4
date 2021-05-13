@@ -1,5 +1,8 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:ninja_id_project/services/training.dart';
+import 'package:show_more_text_popup/show_more_text_popup.dart';
 
 class WorkoutPage extends StatelessWidget {
 
@@ -96,9 +99,10 @@ class WorkoutPage extends StatelessWidget {
                 fontSize: 14
               ),
             ),
-          ),
+          ),         
         ],
       ),
     );
   }
 }
+

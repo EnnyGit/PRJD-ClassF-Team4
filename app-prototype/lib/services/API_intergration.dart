@@ -55,9 +55,7 @@ class ApiIntergration {
   }
 
   void getEndurance() {
-    print('Age: $age RHR: $restingHeartRate');
     double vomax = 15.3 * (220 - age) / restingHeartRate;
-    print('test');
     endurance = (vomax - 32) * 3.33;
   }
 
