@@ -1,6 +1,8 @@
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'dart:math';
+import 'package:collection/algorithms.dart';
+import 'package:ninja_id_project/constants/algorithms.dart';
 
 class ApiIntergration {
   String accessToken;
@@ -13,6 +15,7 @@ class ApiIntergration {
   int level;
   int sleepScore;
   String displayName;
+  Algorithms algo = new Algorithms();
 
   ApiIntergration({this.accessToken});
 
@@ -79,12 +82,7 @@ class ApiIntergration {
           break;
         }
       }
-
-      double riegelTime5k = runActivity['duration'] /
-          1000 *
-          pow((5 / runActivity['distance']), 1.06);
-      double pace = riegelTime5k / 5;
-      speed = 0.1428571429 * (1000 - pace);
+      speed = algo.calculateSpeed(runActivity['duration'] / 1000, runActivity['distance']);
     } catch (e) {
       print('caught error: $e');
     }
