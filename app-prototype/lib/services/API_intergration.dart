@@ -108,4 +108,17 @@ class ApiIntergration {
       print('caught error in getSleepScore: $e');
     }
   }
+
+  Future<void> getTotalSteps() async {
+    try {
+      Response response = await get(
+          Uri.parse(
+              "https://api.fitbit.com/1.2/user/-/sleep/list.json?afterDate=2020-01-01&sort=desc&offset=0&limit=1"),
+          headers: {"Authorization": "Bearer " + accessToken});
+
+      Map<String, dynamic> data = json.decode(response.body);
+    } catch (e) {
+      print('caught error in getTotalSteps: $e');
+    }
+  }
 }

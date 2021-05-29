@@ -32,6 +32,12 @@ class _StatisticsState extends State<Statistics> {
                 width: 200,
                 child: Card(
                   elevation: 5,
+                  child: Text(
+                    'AVG. RESTING HEART RATE'
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)
+                  ),
                 ),
               ),
               Container(
@@ -40,6 +46,12 @@ class _StatisticsState extends State<Statistics> {
                 width: 200,
                 child: Card(
                   elevation: 5,
+                  child: Text(
+                    'AVG. PACE'
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)
+                  ),
                 ),
               ),
             ],
@@ -53,6 +65,12 @@ class _StatisticsState extends State<Statistics> {
                 width: 200,
                 child: Card(
                   elevation: 5,
+                  child: Text(
+                    'TOTAL DISTANCE'
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)
+                  ),                 
                 ),
               ),
               Container(
@@ -61,14 +79,32 @@ class _StatisticsState extends State<Statistics> {
                 width: 200,
                 child: Card(
                   elevation: 5,
+                  child: Text(
+                    'TIME SPENT RUNNING'
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)
+                  ),
                 ),
               ),
             ],
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(0, 10, 45, 20),
+            padding: EdgeInsets.fromLTRB(25, 10, 25, 20),
             height: 300,
             width: 500,
+            child: Card(
+              semanticContainer: true,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              child: Image(
+                image: AssetImage('assets/graph.png'),
+                fit: BoxFit.fill,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              ),
+              elevation: 5,         
+            ),
           ),
         ],
       )
