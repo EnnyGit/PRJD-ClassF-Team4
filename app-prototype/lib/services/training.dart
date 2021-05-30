@@ -9,6 +9,9 @@ class Training {
   String details;
   String description;
   String image;
+  int speedlvl;
+  int endurancelvl;
+  int sleeplvl;
 
   Training({
     this.name, 
@@ -17,7 +20,10 @@ class Training {
     this.duration,  
     this.details,
     this.description,
-    this.image
+    this.image,
+    this.speedlvl,
+    this.endurancelvl,
+    this.sleeplvl
   });
 }
 
