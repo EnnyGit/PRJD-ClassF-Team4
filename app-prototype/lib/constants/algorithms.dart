@@ -28,4 +28,16 @@ class Algorithms {
   double calculateEnduranceFromVomax(double vomax){
     return (vomax - 32) * 3.33;
   }
+
+  double getTrainingLevelRequired(double raceTimeInSeconds) {
+    if (raceTimeInSeconds < 15993) {
+      return 100;
+    } else if (raceTimeInSeconds == 15993) {
+      return 86;
+    } else if (raceTimeInSeconds == 17538) {
+      return 73;
+    } else if (raceTimeInSeconds == 20505) {
+      return 60;
+    }
+  }
 }
