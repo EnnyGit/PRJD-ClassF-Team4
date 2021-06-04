@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'dart:math';
 import 'package:collection/algorithms.dart';
 import 'package:ninja_id_project/constants/algorithms.dart';
+import 'package:intl/intl.dart';
 
 class ApiIntergration {
   String accessToken;
@@ -16,6 +18,8 @@ class ApiIntergration {
   int sleepScore;
   String displayName;
   Algorithms algo = new Algorithms();
+  int activityCount;
+  int activityLevel;
 
   ApiIntergration({this.accessToken});
 
@@ -112,13 +116,44 @@ class ApiIntergration {
   Future<void> getTotalSteps() async {
     try {
       Response response = await get(
-          Uri.parse(
-              "https://api.fitbit.com/1.2/user/-/sleep/list.json?afterDate=2020-01-01&sort=desc&offset=0&limit=1"),
-          headers: {"Authorization": "Bearer " + accessToken});
+        Uri.parse(
+            "https://api.fitbit.com/1.2/user/-/sleep/list.json?afterDate=2020-01-01&sort=desc&offset=0&limit=1"),
+        headers: {"Authorization": "Bearer " + accessToken});
 
       Map<String, dynamic> data = json.decode(response.body);
+      //TODO: Finish
     } catch (e) {
       print('caught error in getTotalSteps: $e');
+    }
+  }
+
+  Future<void> getAmountOfRuns() async {
+    try {
+      var date = DateTime.now();
+      var lastMonth = new DateTime(date.year, date.month -1, date.day);
+      var formattedDate = DateFormat('yyyy-MM-dd').format(lastMonth);
+
+      Response response = await get(
+        Uri.parse(
+          "https://api.fitbit.com/1/user/-/activities/list.json?afterDate=$formattedDate&sort=desc&offset=0&limit=100"),
+        headers: {"Authorization": "Bearer " + accessToken});
+        Map<String, dynamic> data = json.decode(response.body);
+
+      activityCount = 0;
+      for (var activity in data['activities']) {
+        if (activity['activityName'] == 'Walk') {
+          activityCount ++;
+        }
+      }
+
+      if(activityCount >= 20) {
+        activityLevel = 100;
+      } else {
+        activityLevel = activityCount * 5;
+      }
+      print(activityLevel);
+    } catch (e) {
+      print('caught error in getAmountOfRuns: $e');
     }
   }
 }
