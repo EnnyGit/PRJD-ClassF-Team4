@@ -99,8 +99,8 @@ class _HomeState extends State<Home> {
                 children: <Widget>[
                   StatBar(statData: data['endurance'], color: Colors.green),
                   StatText(statText: 'Endurance'),    
-                  StatBar(statData: data['sleep'], color: Colors.purple,),
-                  StatText(statText: 'Sleep'),  
+                  StatBar(statData: data['activity'], color: Colors.purple,),
+                  StatText(statText: 'Activity'),  
                   StatBar(statData: data['speed'], color: Colors.amber,),
                   StatText(statText: 'Speed')                                         
                   ],

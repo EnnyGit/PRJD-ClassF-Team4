@@ -121,7 +121,49 @@ class SingleWorkouts extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: 555,
+            height: 74,
+            child: Column(
+              children: [
+                ListTile(     
+                  tileColor: Colors.blue[600],    
+                  leading: CircleAvatar(
+                    backgroundImage: AssetImage('assets/muscle.png'),
+                    radius: 30,
+                  ),
+                  title: Text(
+                    'Training Naam*',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 20
+                    ),                        
+                  ),
+                  subtitle: Text(
+                    'Recommended Training!',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey[800],
+                    ),
+                  ),
+                  trailing: Icon(
+                    Icons.navigate_next,
+                    size: 50,
+                    color: Colors.black,
+                  ),
+                  isThreeLine: false,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => WorkoutPage(training: trainings[4],))
+                    );
+                  },
+                ),
+              ],
+            )
+          ),
+          Container(
+            //455
+            height: 480,
             child: ListView.builder(
               itemCount: trainings.length,
               itemBuilder: (context, index){
@@ -132,28 +174,26 @@ class SingleWorkouts extends StatelessWidget {
                       child: Card(
                       child: Container(
                         decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(
-                              trainings[index].image,
-                            ),
-                          ),
+                          color: Colors.blue[300],
                         ),
                         child: ListTile(        
                           leading: CircleAvatar(
                             backgroundImage: AssetImage(trainings[index].icon),
                             radius: 30,
                           ),
-                          title: BorderAndStrokeText(
-                            text: trainings[index].name,
-                            fontSize: 20,
-                            strokeWidth: 3,
+                          title: Text(
+                            trainings[index].name,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 20
+                            ),                        
                           ),
                           subtitle: Text(
                             trainings[index].details,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: Colors.grey[800],
                             ),
                           ),
                           trailing: Icon(
