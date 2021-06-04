@@ -26,8 +26,8 @@ class SingleWorkouts extends StatelessWidget {
       description: 'To Do Kneel on your mat with your toes curled under. Sit back on your heels (you can place a yoga block or pillow between your heels and glutes). Breathe deeply for 10 counts. Then, point your toes, place your hands on the mat behind you, and lean back as you attempt to lift your knees off the mat. If your knees don’t come far up, don’t worry. You’ll still feel a nice stretch in your shins and arches.',
       speedlvl: 0,
       endurancelvl: 0,
-      sleeplvl:  2),
-
+      sleeplvl:  2
+      ),
       
       Training(name: "Interval jogging",
       color: Colors.yellow,
@@ -162,7 +162,6 @@ class SingleWorkouts extends StatelessWidget {
             )
           ),
           Container(
-            //455
             height: 480,
             child: ListView.builder(
               itemCount: trainings.length,

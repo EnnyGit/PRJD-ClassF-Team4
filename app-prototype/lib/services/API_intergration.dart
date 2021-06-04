@@ -141,7 +141,7 @@ class ApiIntergration {
 
       activityCount = 0;
       for (var activity in data['activities']) {
-        if (activity['activityName'] == 'Walk') {
+        if (activity['activityName'] == 'Run') {
           activityCount ++;
         }
       }
