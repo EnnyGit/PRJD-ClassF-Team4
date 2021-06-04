@@ -9,104 +9,86 @@ class SingleWorkouts extends StatelessWidget {
         color: Colors.red,
         duration: '30-45 min(based on stats)', //this needs to be based on stats
         icon: 'assets/heart.png',
-        image: 'assets/runner3.png',
         details: '6 to 8 * 1,000m with no recovery jog(based on stats)',
         description:
             'Maintain a consistent speed, level of intensity and work rate during an exercise session. ',
         speedlvl: 0,
-        endurancelvl: 2,
-        sleeplvl: 1),
+        endurancelvl: 2),
     Training(
         name: "Toes poes",
         color: Colors.red,
         duration: '40 seconds',
-        icon: 'assets/sport.png',
-        image: 'assets/yoga1.png',
+        icon: 'assets/yoga.png',
         details: 'stretching the shins and arches of the feet',
         description:
             'To Do Kneel on your mat with your toes curled under. Sit back on your heels (you can place a yoga block or pillow between your heels and glutes). Breathe deeply for 10 counts. Then, point your toes, place your hands on the mat behind you, and lean back as you attempt to lift your knees off the mat. If your knees don’t come far up, don’t worry. You’ll still feel a nice stretch in your shins and arches.',
         speedlvl: 0,
-        endurancelvl: 0,
-        sleeplvl: 2),
+        endurancelvl: 0),
     Training(
         name: "Interval jogging",
         color: Colors.yellow,
         duration: '60 min(based on stats)', //this needs to be based on stats
-        icon: 'assets/trainers.png',
-        image: 'assets/tennis1.png',
+        icon: 'assets/heart.png',
         details: '6 to 8 * 1,000m with with recovery jog(based on stats)',
         description:
             'Alternate between periods of high-intensity exercise and lower-intensity, active or passive recovery.',
         speedlvl: 0,
-        endurancelvl: 2,
-        sleeplvl: 0),
+        endurancelvl: 2),
     Training(
         name: "Squats",
         color: Colors.purple,
         duration: '20 min', //maybe also based on stats?
-        icon: 'assets/sport.png',
-        image: 'assets/runner3.png',
+        icon: 'assets/stopwatch.png',
         details: '3 sets of 12',
         description:
             'Start standing with feet just wider than hip-width apart, toes pointed slightly out, and hands clasped at chest for balance. Initiate the movement by sending your hips back first, then bend knees to lower down as far as possible while keeping your chest lifted. You should lower down until thighs are at least parallel to floor. Press through heels and engage glutes to return back to the starting position.',
         speedlvl: 1,
-        endurancelvl: 1,
-        sleeplvl: 1),
+        endurancelvl: 1),
     Training(
         name: "Cruise Intervals",
         color: Colors.red,
         duration: '30-45 min',
-        icon: 'assets/sport.png',
-        image: 'assets/runner3.png',
+        icon: 'assets/heart.png',
         details: '6 to 8 * 1,000m with 200m recovery jog',
         description: 'Description',
         speedlvl: 0,
-        endurancelvl: 2,
-        sleeplvl: 0),
+        endurancelvl: 2),
     Training(
         name: "Tempo Intervals",
         color: Colors.red,
         duration: '30 min',
-        icon: 'assets/sport.png',
-        image: 'assets/runner2.png',
+        icon: 'assets/heart.png',
         details: '4 to 5 * 2,000m WITH 400m recovery jog',
         description: 'Description',
         speedlvl: 0,
-        endurancelvl: 1,
-        sleeplvl: 0),
+        endurancelvl: 1),
     Training(
         name: "Yasso 800s",
         color: Colors.yellow,
         duration: '20-25 min',
-        icon: 'assets/sport.png',
-        image: 'assets/boxing1.png',
+        icon: 'assets/stopwatch.png',
         details: '8 to 10 * 800m with equal recovery jog',
         description: 'Description',
         speedlvl: 2,
-        endurancelvl: 1,
-        sleeplvl: 0),
+        endurancelvl: 1),
     Training(
         name: "Goal Pace Run",
         color: Colors.yellow,
         duration: '60 min',
-        icon: 'assets/sport.png',
-        image: 'assets/tennis1.png',
+        icon: 'assets/heart.png',
         details: '8 to 12 miles at marathon pace',
         description: 'Description',
         speedlvl: 0,
-        endurancelvl: 2,
-        sleeplvl: 0),
+        endurancelvl: 2),
     Training(
         name: "Quarters",
         color: Colors.purple,
         duration: '30 min',
-        icon: 'assets/sport.png',
-        image: 'assets/runner3.png',
+        icon: 'assets/stopwatch.png',
         details: '8 to 10 * 2 mins with 1-min recovery jog',
         description: 'Description',
         speedlvl: 1,
-        endurancelvl: 1,
-        sleeplvl: 0)
+        endurancelvl: 1)
   ];
 
   @override
@@ -115,46 +97,46 @@ class SingleWorkouts extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: 74,
-            child: Column(
-              children: [
-                ListTile(     
-                  tileColor: Colors.blue[600],    
-                  leading: CircleAvatar(
-                    backgroundImage: AssetImage('assets/muscle.png'),
-                    radius: 30,
-                  ),
-                  title: Text(
-                    'Training Naam*',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      fontSize: 20
-                    ),                        
-                  ),
-                  subtitle: Text(
-                    'Recommended Training!',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey[800],
+              height: 74,
+              child: Column(
+                children: [
+                  ListTile(
+                    tileColor: Colors.blue[600],
+                    leading: CircleAvatar(
+                      backgroundImage: AssetImage('assets/muscle.png'),
+                      radius: 30,
                     ),
+                    title: Text(
+                      'Training Naam*',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 20),
+                    ),
+                    subtitle: Text(
+                      'Recommended Training!',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[800],
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.navigate_next,
+                      size: 50,
+                      color: Colors.black,
+                    ),
+                    isThreeLine: false,
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => WorkoutPage(
+                                    training: trainings[4],
+                                  )));
+                    },
                   ),
-                  trailing: Icon(
-                    Icons.navigate_next,
-                    size: 50,
-                    color: Colors.black,
-                  ),
-                  isThreeLine: false,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => WorkoutPage(training: trainings[4],))
-                    );
-                  },
-                ),
-              ],
-            )
-          ),
+                ],
+              )),
           Container(
             //455
             height: 480,
@@ -179,10 +161,9 @@ class SingleWorkouts extends StatelessWidget {
                           title: Text(
                             trainings[index].name,
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 20
-                            ),                        
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontSize: 20),
                           ),
                           subtitle: Text(
                             trainings[index].details,
