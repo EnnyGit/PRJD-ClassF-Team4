@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class Training {
 
+  int speedReq;
+  int endReq;
   String name;
   Color color;
   String icon;
@@ -11,9 +13,11 @@ class Training {
   String image;
   int speedlvl;
   int endurancelvl;
-  int sleeplvl;
+
 
   Training({
+    this.speedReq,
+    this.endReq,
     this.name, 
     this.color,
     this.icon,
@@ -23,7 +27,7 @@ class Training {
     this.image,
     this.speedlvl,
     this.endurancelvl,
-    this.sleeplvl
+
   });
 }
 

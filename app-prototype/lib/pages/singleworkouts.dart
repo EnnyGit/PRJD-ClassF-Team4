@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:ninja_id_project/constants/algorithms.dart';
 import 'package:ninja_id_project/pages/workoutpage.dart';
 import 'package:ninja_id_project/services/training.dart';
 
 class SingleWorkouts extends StatelessWidget {
+  
+  SingleWorkouts(this.currentGoal);
+
+  final List<int> currentGoal;
+  static Training recommendedTraining;
+
   List<Training> trainings = [
     Training(
         name: "Steady-state jogging",
@@ -93,6 +100,12 @@ class SingleWorkouts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Algorithms algo = new Algorithms();
+    var sortedList = algo.sortTrainingScore(trainings, currentGoal);
+
+    var recommendedTraining = sortedList[0];
+    sortedList.removeAt(0);
+
     return Container(
       child: Column(
         children: [
@@ -103,11 +116,11 @@ class SingleWorkouts extends StatelessWidget {
                   ListTile(
                     tileColor: Colors.blue[600],
                     leading: CircleAvatar(
-                      backgroundImage: AssetImage('assets/muscle.png'),
+                      backgroundImage: AssetImage(recommendedTraining.icon),
                       radius: 30,
                     ),
                     title: Text(
-                      'Training Naam*',
+                      recommendedTraining.name,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
@@ -131,8 +144,8 @@ class SingleWorkouts extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => WorkoutPage(
-                                    training: trainings[4],
-                                  )));
+                                    training: recommendedTraining,
+                      )));
                     },
                   ),
                 ],
@@ -140,7 +153,7 @@ class SingleWorkouts extends StatelessWidget {
           Container(
             height: 480,
             child: ListView.builder(
-              itemCount: trainings.length,
+              itemCount: sortedList.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding:
@@ -154,18 +167,18 @@ class SingleWorkouts extends StatelessWidget {
                         ),
                         child: ListTile(
                           leading: CircleAvatar(
-                            backgroundImage: AssetImage(trainings[index].icon),
+                            backgroundImage: AssetImage(sortedList[index].icon),
                             radius: 30,
                           ),
                           title: Text(
-                            trainings[index].name,
+                            sortedList[index].name,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                                 fontSize: 20),
                           ),
                           subtitle: Text(
-                            trainings[index].details,
+                            sortedList[index].details,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.grey[800],
@@ -181,9 +194,11 @@ class SingleWorkouts extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => WorkoutPage(
-                                          training: trainings[index],
-                                        )));
+                                  builder: (context) => WorkoutPage(
+                                  training: sortedList[index],
+                                ),
+                              ),
+                            );
                           },
                         ),
                       ),

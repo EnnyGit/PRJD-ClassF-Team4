@@ -10,8 +10,8 @@ class ApiIntergration {
   String accessToken;
   int restingHeartRate; // most recent calculated resting heart rate
   int age;
-  double endurance; // VO2max calculated from age + restingHeartrate
-  double speed; //TODO: better calculation
+  static double endurance; // VO2max calculated from age + restingHeartrate
+  static double speed; //TODO: better calculation
   String name; //TODO: Pak name van Fitbit
   String location; //TODO: Pak location van phone?
   int level;
@@ -141,7 +141,7 @@ class ApiIntergration {
 
       activityCount = 0;
       for (var activity in data['activities']) {
-        if (activity['activityName'] == 'Run') {
+        if (activity['activityName'] == 'Walk') {
           activityCount ++;
         }
       }
@@ -151,7 +151,7 @@ class ApiIntergration {
       } else {
         activityLevel = activityCount * 5;
       }
-      print(activityLevel);
+      //print(activityLevel);
     } catch (e) {
       print('caught error in getAmountOfRuns: $e');
     }

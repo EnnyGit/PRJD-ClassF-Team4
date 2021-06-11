@@ -22,10 +22,10 @@ class _LoadingState extends State<Loading> {
     await fitbitApi.getAmountOfRuns();
 
     Navigator.pushReplacementNamed(context, '/home', arguments: {
-      'endurance': fitbitApi.endurance,
-      'speed': fitbitApi.speed,
+      'endurance': ApiIntergration.endurance,
+      'speed': ApiIntergration.speed,
       'sleep': fitbitApi.sleepScore,
-      'level': ((fitbitApi.endurance * 0.4 )+ (fitbitApi.speed * 0.4) + (fitbitApi.sleepScore * 0.2)),
+      'level': ((ApiIntergration.endurance * 0.4 )+ (ApiIntergration.speed * 0.4) + (fitbitApi.activityLevel * 0.2)),
       'displayName': fitbitApi.displayName,
       'activity': fitbitApi.activityLevel
     });

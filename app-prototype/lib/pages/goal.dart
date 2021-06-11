@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ninja_id_project/constants/algorithms.dart';
 import 'package:ninja_id_project/models/runtimes.dart';
-import 'package:collection/algorithms.dart';
+import 'package:ninja_id_project/pages/home.dart';
 
 class Goal extends StatefulWidget {
   @override
@@ -15,46 +15,11 @@ class _GoalState extends State<Goal> {
   String dropdownValue = 'Marathon';
   String secondDropDownValue;
   List<String> secondDropDownList;
+  List<int> currentGoal = [1, 1];
 
   void setDefaults() {
     secondDropDownList = runTimes.marathonAverage;
     secondDropDownValue = secondDropDownList[0];
-  }
-
-  void setDropDownList(String value) {
-    switch (value) {
-      case 'Marathon':
-        {
-          setState(() {
-            secondDropDownList = runTimes.marathonAverage;
-          });
-        }
-        break;
-
-      case '20km':
-        {
-          setState(() {
-            secondDropDownList = runTimes.halfMarathonAverage;
-          });
-        }
-        break;
-
-      case '10km':
-        {
-          setState(() {
-            secondDropDownList = runTimes.tenkmAverage;
-          });
-        }
-        break;
-
-      case '5km':
-        {
-          setState(() {
-            secondDropDownList = runTimes.fivekmAverage;
-          });
-        }
-        break;
-    }
   }
 
   @override
@@ -73,6 +38,13 @@ class _GoalState extends State<Goal> {
         centerTitle: true,
         elevation: 0,
         toolbarHeight: 50,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: (){
+            //Navigator.pop(context);
+            Navigator.pop(context, currentGoal);
+          },
+        ),
       ),
       body: Column(
         children: <Widget>[
@@ -116,6 +88,7 @@ class _GoalState extends State<Goal> {
                     onChanged: (String newValue) {
                       setState(() {
                         dropdownValue = newValue;
+                        
                       });
                     },
                     items: <String>['Marathon', '20km', '10km', '5km']
@@ -142,6 +115,8 @@ class _GoalState extends State<Goal> {
                     onChanged: (String newValue) {
                       setState(() {
                         secondDropDownValue = newValue;
+                        currentGoal[1] = int.parse(algo.calculateEnduranceFromVomax(algo.calculateVDOT(runTimes.marathonAverageSeconds[secondDropDownList.indexOf(secondDropDownValue)].toDouble(), 42195)).toStringAsFixed(0));
+                        currentGoal[0] = int.parse(algo.calculateSpeed(runTimes.marathonAverageSeconds[secondDropDownList.indexOf(secondDropDownValue)].toDouble(), 42).toStringAsFixed(0));
                       });
                     },
                     items: secondDropDownList

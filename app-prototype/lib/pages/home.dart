@@ -9,6 +9,7 @@ class _HomeState extends State<Home> {
 
   Map data = {};
   int fitnessLevel = 0;
+  List<int> currentGoal;
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +129,9 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/choose_training');
+                      Navigator.pushNamed(context, '/choose_training', arguments: {
+                        'currentGoal': currentGoal
+                      });
                     },
                   ),
                 ),
@@ -153,8 +156,12 @@ class _HomeState extends State<Home> {
                         fontWeight: FontWeight.bold
                       ),
                     ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/goal');
+                    onPressed: () async {
+                      final currentGoal = await Navigator.pushNamed(context, '/goal');
+                      setState(() {
+                        this.currentGoal = currentGoal;
+                        print(this.currentGoal);
+                      });
                     },
                   ),
                 ),

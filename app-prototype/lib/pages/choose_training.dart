@@ -10,10 +10,13 @@ class ChooseTraining extends StatefulWidget {
 
 class _ChooseTrainingState extends State<ChooseTraining> {
 
-
+  Map data = {};
 
   @override
   Widget build(BuildContext context) {
+
+    data = ModalRoute.of(context).settings.arguments;
+
     return DefaultTabController(
       length: 2,
       initialIndex: 0,
@@ -33,8 +36,8 @@ class _ChooseTrainingState extends State<ChooseTraining> {
         ),
         body: TabBarView(
           children: <Widget>[
-            SingleWorkouts(),
-            WeeklyWorkouts(),
+            SingleWorkouts(data['currentGoal']),
+            WeeklyWorkouts(data['currentGoal']),
           ],
         ),
       ),
