@@ -35,7 +35,7 @@ class _ChooseTrainingState extends State<ChooseTraining> {
         body: TabBarView(
           children: <Widget>[
             SingleWorkout(),
-            WeeklyWorkouts(data['currentGoal']),
+            WeeklyWorkouts(),
           ],
         ),
       ),

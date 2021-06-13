@@ -11,16 +11,15 @@ class SingleWorkout extends StatefulWidget {
 }
 
 class _SingleWorkout extends State<SingleWorkout> {
-  int speed = 0;
-  int endurance = 0;
-  List<int> currentGoal;
-  static Training recommendedTraining;
+
+  int speed = 100;
+  int endurance = 100;
 
   List<Training> trainings = [
     Training(
         name: "Steady-state jogging",
         color: Colors.red,
-        duration: '30-45 min(based on stats)',
+        duration: '30-45 min(based on stats)', //this needs to be based on stats
         icon: 'assets/heart.png',
         image: 'assets/runner3.png',
         details: '6 to 8 * 1,000m with no recovery jog(based on stats)',
@@ -78,7 +77,7 @@ class _SingleWorkout extends State<SingleWorkout> {
         icon: 'assets/heart.png',
         image: 'assets/runner2.png',
         details: '4 to 5 * 2,000m WITH 400m recovery jog',
-        description: 'Description',
+        description: 'Tempo intervals are a form of tempo running, where we split the run into two or more intervals. By doing this we obtain the same physiological benefits as tempo running, but accumulate more total time at this intensity.',
         speedlvl: 3,
         endurancelvl: 1),
     Training(
@@ -103,6 +102,11 @@ class _SingleWorkout extends State<SingleWorkout> {
         endurancelvl: 4)
   ];
 
+  @override
+  void initState() {
+    getData();
+  }
+
   getData() async {
     setState(() {
       speed = Settings.prefs.getInt('goalSpeed');
@@ -113,7 +117,6 @@ class _SingleWorkout extends State<SingleWorkout> {
   @override
   Widget build(BuildContext context) {
     Algorithms algo = new Algorithms();
-    getData();
 
     var sortedList = algo.sortTrainingScore(trainings, [speed, endurance]);
 
@@ -155,11 +158,11 @@ class _SingleWorkout extends State<SingleWorkout> {
                     isThreeLine: false,
                     onTap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => WorkoutPage(
-                                    training: recommendedTraining,
-                                  )));
+                        context,
+                        MaterialPageRoute(builder: (context) => WorkoutPage(training: recommendedTraining,
+                        )
+                        )
+                      );
                     },
                   ),
                 ],
