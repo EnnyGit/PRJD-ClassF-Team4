@@ -77,7 +77,7 @@ class _SingleWorkout extends State<SingleWorkout> {
         icon: 'assets/heart.png',
         image: 'assets/runner2.png',
         details: '4 to 5 * 2,000m WITH 400m recovery jog',
-        description: 'Description',
+        description: 'Tempo intervals are a form of tempo running, where we split the run into two or more intervals. By doing this we obtain the same physiological benefits as tempo running, but accumulate more total time at this intensity.',
         speedlvl: 3,
         endurancelvl: 1),
     Training(
