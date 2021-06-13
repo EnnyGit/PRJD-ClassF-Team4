@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ninja_id_project/constants/algorithms.dart';
 import 'package:ninja_id_project/models/runtimes.dart';
-import 'package:ninja_id_project/pages/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Goal extends StatefulWidget {
@@ -16,7 +15,7 @@ class _GoalState extends State<Goal> {
   String dropdownValue = 'Marathon';
   String secondDropDownValue;
   List<String> secondDropDownList;
-  List<int> currentGoal = [1, 1];
+  List<int> currentGoal = [100, 100];
 
   void setDefaults() async {
     secondDropDownList = runTimes.marathonAverage;

@@ -10,9 +10,9 @@ class SingleWorkout extends StatefulWidget {
 }
 
 class _SingleWorkout extends State<SingleWorkout> {
-  static Training recommendedTraining;
-  int speed = 0;
-  int endurance = 0;
+  //static Training recommendedTraining;
+  int speed = 100;
+  int endurance = 100;
 
   List<Training> trainings = [
     Training(
@@ -168,11 +168,11 @@ class _SingleWorkout extends State<SingleWorkout> {
                     isThreeLine: false,
                     onTap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => WorkoutPage(
-                                    training: recommendedTraining,
-                                  )));
+                        context,
+                        MaterialPageRoute(builder: (context) => WorkoutPage(training: recommendedTraining,
+                        )
+                        )
+                      );
                     },
                   ),
                 ],
