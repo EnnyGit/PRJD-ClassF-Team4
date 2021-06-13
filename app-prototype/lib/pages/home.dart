@@ -9,7 +9,7 @@ class _HomeState extends State<Home> {
 
   Map data = {};
   int fitnessLevel = 0;
-  List<int> currentGoal;
+  List<int> currentGoal = [1,1];
 
   @override
   Widget build(BuildContext context) {
