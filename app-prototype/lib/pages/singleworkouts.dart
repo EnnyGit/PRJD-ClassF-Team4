@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ninja_id_project/constants/algorithms.dart';
 import 'package:ninja_id_project/pages/workoutpage.dart';
 import 'package:ninja_id_project/services/training.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SingleWorkouts extends StatelessWidget {
-  
   SingleWorkouts(this.currentGoal);
 
   final List<int> currentGoal;
@@ -108,8 +108,23 @@ class SingleWorkouts extends StatelessWidget {
   ];
 
   @override
+  void initState() {
+    getData();
+  }
+
+  List<int> getData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<int> tempGoal = new List<int>();
+    tempGoal.add(prefs.getInt('goalSpeed'));
+    tempGoal.add(prefs.getInt('goalEndurance'));
+    return tempGoal;
+  }
+
+  @override
   Widget build(BuildContext context) {
     Algorithms algo = new Algorithms();
+    getData();
+
     var sortedList = algo.sortTrainingScore(trainings, currentGoal);
 
     var recommendedTraining = sortedList[0];
@@ -154,7 +169,7 @@ class SingleWorkouts extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => WorkoutPage(
                                     training: recommendedTraining,
-                      )));
+                                  )));
                     },
                   ),
                 ],
@@ -201,9 +216,9 @@ class SingleWorkouts extends StatelessWidget {
                           isThreeLine: true,
                           onTap: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => WorkoutPage(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => WorkoutPage(
                                   training: sortedList[index],
                                 ),
                               ),

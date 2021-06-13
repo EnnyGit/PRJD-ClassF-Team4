@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ninja_id_project/constants/algorithms.dart';
 import 'package:ninja_id_project/models/runtimes.dart';
 import 'package:ninja_id_project/pages/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Goal extends StatefulWidget {
   @override
@@ -16,6 +17,12 @@ class _GoalState extends State<Goal> {
   String secondDropDownValue;
   List<String> secondDropDownList;
   List<int> currentGoal = [1, 1];
+
+  onPressed() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('goalSpeed', 50);
+    prefs.setInt('goalEndurance', 50);
+  }
 
   void setDefaults() {
     secondDropDownList = runTimes.marathonAverage;
@@ -40,7 +47,7 @@ class _GoalState extends State<Goal> {
         toolbarHeight: 50,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: (){
+          onPressed: () {
             //Navigator.pop(context);
             Navigator.pop(context, currentGoal);
           },
@@ -88,7 +95,6 @@ class _GoalState extends State<Goal> {
                     onChanged: (String newValue) {
                       setState(() {
                         dropdownValue = newValue;
-                        
                       });
                     },
                     items: <String>['Marathon', '20km', '10km', '5km']
@@ -115,8 +121,22 @@ class _GoalState extends State<Goal> {
                     onChanged: (String newValue) {
                       setState(() {
                         secondDropDownValue = newValue;
-                        currentGoal[1] = int.parse(algo.calculateEnduranceFromVomax(algo.calculateVDOT(runTimes.marathonAverageSeconds[secondDropDownList.indexOf(secondDropDownValue)].toDouble(), 42195)).toStringAsFixed(0));
-                        currentGoal[0] = int.parse(algo.calculateSpeed(runTimes.marathonAverageSeconds[secondDropDownList.indexOf(secondDropDownValue)].toDouble(), 42).toStringAsFixed(0));
+                        currentGoal[1] = int.parse(algo
+                            .calculateEnduranceFromVomax(algo.calculateVDOT(
+                                runTimes.marathonAverageSeconds[
+                                        secondDropDownList
+                                            .indexOf(secondDropDownValue)]
+                                    .toDouble(),
+                                42195))
+                            .toStringAsFixed(0));
+                        currentGoal[0] = int.parse(algo
+                            .calculateSpeed(
+                                runTimes.marathonAverageSeconds[
+                                        secondDropDownList
+                                            .indexOf(secondDropDownValue)]
+                                    .toDouble(),
+                                42)
+                            .toStringAsFixed(0));
                       });
                     },
                     items: secondDropDownList
@@ -218,9 +238,7 @@ class _GoalState extends State<Goal> {
                             Text(
                               'Endurance',
                               style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600
-                              ),                             
+                                  fontSize: 14, fontWeight: FontWeight.w600),
                             ),
                           ],
                         ),
