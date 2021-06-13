@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -6,14 +7,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   Map data = {};
   int fitnessLevel = 0;
-  List<int> currentGoal = [1,1];
+  List<int> currentGoal;
 
   @override
   Widget build(BuildContext context) {
-
     data = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
@@ -25,13 +24,13 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             SizedBox(height: 20),
             Center(
+              child: CircleAvatar(
+                backgroundColor: Colors.blue[800],
+                radius: 50.0,
                 child: CircleAvatar(
-                  backgroundColor: Colors.blue[800],
-                  radius: 50.0,
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage('assets/user3.jpg'),
-                    radius: 47,
-                  ),
+                  backgroundImage: AssetImage('assets/user3.jpg'),
+                  radius: 47,
+                ),
               ),
             ),
             Divider(
@@ -42,22 +41,20 @@ class _HomeState extends State<Home> {
               child: Text(
                 '${data['displayName']}',
                 style: TextStyle(
-                  fontSize: 22,
-                  color: Colors.black,
-                  letterSpacing: 2.0,
-                  fontWeight: FontWeight.bold
-                ),
+                    fontSize: 22,
+                    color: Colors.black,
+                    letterSpacing: 2.0,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             Center(
               child: Text(
                 'Schiedam, Netherlands',
                 style: TextStyle(
-                  color: Colors.blue[800],
-                  letterSpacing: 2.0,
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.normal
-                ),
+                    color: Colors.blue[800],
+                    letterSpacing: 2.0,
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.normal),
               ),
             ),
             SizedBox(height: 40.0),
@@ -73,7 +70,7 @@ class _HomeState extends State<Home> {
                         height: 100,
                         child: CircularProgressIndicator(
                           strokeWidth: 10,
-                          value: data['level']/100,
+                          value: data['level'] / 100,
                         ),
                       ),
                     ),
@@ -83,11 +80,10 @@ class _HomeState extends State<Home> {
                         child: Text(
                           '${data['level'].toStringAsFixed(0)}',
                           style: TextStyle(
-                            color: Colors.black,
-                            letterSpacing: 2.0,
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold
-                          ),
+                              color: Colors.black,
+                              letterSpacing: 2.0,
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -99,15 +95,20 @@ class _HomeState extends State<Home> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   StatBar(statData: data['endurance'], color: Colors.green),
-                  StatText(statText: 'Endurance'),    
-                  StatBar(statData: data['activity'], color: Colors.purple,),
-                  StatText(statText: 'Activity'),  
-                  StatBar(statData: data['speed'], color: Colors.amber,),
-                  StatText(statText: 'Speed')                                         
-                  ],
-                ),
-              ]
-            ),          
+                  StatText(statText: 'Endurance'),
+                  StatBar(
+                    statData: data['activity'],
+                    color: Colors.purple,
+                  ),
+                  StatText(statText: 'Activity'),
+                  StatBar(
+                    statData: data['speed'],
+                    color: Colors.amber,
+                  ),
+                  StatText(statText: 'Speed')
+                ],
+              ),
+            ]),
             SizedBox(height: 35.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -115,23 +116,18 @@ class _HomeState extends State<Home> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: ElevatedButton.icon(
-                    icon: Icon(
-                      Icons.fitness_center,
-                      color: Colors.grey[500],
-                      size: 30
-                    ),
+                    icon: Icon(Icons.fitness_center,
+                        color: Colors.grey[500], size: 30),
                     label: Text('Training'),
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(horizontal: 53, vertical: 10),
-                      textStyle: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold
-                      ),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 53, vertical: 10),
+                      textStyle:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/choose_training', arguments: {
-                        'currentGoal': currentGoal
-                      });
+                      Navigator.pushNamed(context, '/choose_training',
+                          arguments: {'currentGoal': currentGoal});
                     },
                   ),
                 ),
@@ -143,21 +139,17 @@ class _HomeState extends State<Home> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: ElevatedButton.icon(
-                    icon: Icon(
-                      Icons.check,
-                      color: Colors.green,
-                      size: 30
-                    ),
+                    icon: Icon(Icons.check, color: Colors.green, size: 30),
                     label: Text('Goals'),
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(horizontal: 70, vertical: 10),
-                      textStyle: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold
-                      ),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 70, vertical: 10),
+                      textStyle:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                     onPressed: () async {
-                      final currentGoal = await Navigator.pushNamed(context, '/goal');
+                      final currentGoal =
+                          await Navigator.pushNamed(context, '/goal');
                       setState(() {
                         this.currentGoal = currentGoal;
                         print(this.currentGoal);
@@ -173,18 +165,14 @@ class _HomeState extends State<Home> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: ElevatedButton.icon(
-                    icon: Icon(
-                      Icons.graphic_eq,
-                      color: Colors.grey[500],
-                      size: 30
-                    ),
+                    icon: Icon(Icons.graphic_eq,
+                        color: Colors.grey[500], size: 30),
                     label: Text('Statistics'),
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(horizontal: 45, vertical: 10),
-                      textStyle: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold
-                      ),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 45, vertical: 10),
+                      textStyle:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                     onPressed: () {
                       Navigator.pushNamed(context, '/statistics');
@@ -212,25 +200,19 @@ class StatText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(28, 0, 0, 0),
-      child: Text(
-        statText,
-        style: TextStyle(
-          color: Colors.blue[800],
-          letterSpacing: 2.0,
-          fontSize: 13,  
-          fontWeight: FontWeight.bold
-        )                 
-      ),
+      child: Text(statText,
+          style: TextStyle(
+              color: Colors.blue[800],
+              letterSpacing: 2.0,
+              fontSize: 13,
+              fontWeight: FontWeight.bold)),
     );
   }
 }
 
 class StatBar extends StatelessWidget {
-  const StatBar({
-    Key key,
-    @required this.statData,
-    @required this.color
-  }) : super(key: key);
+  const StatBar({Key key, @required this.statData, @required this.color})
+      : super(key: key);
 
   final dynamic statData;
   final Color color;
@@ -239,26 +221,25 @@ class StatBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-      Text(
-        '${statData.toStringAsFixed(0)}',
-        style: TextStyle(
-          color: Colors.blue[800],
-          letterSpacing: 2.0,
-          fontSize: 18,  
-          fontWeight: FontWeight.bold
+        Text(
+          '${statData.toStringAsFixed(0)}',
+          style: TextStyle(
+              color: Colors.blue[800],
+              letterSpacing: 2.0,
+              fontSize: 18,
+              fontWeight: FontWeight.bold),
         ),
-      ),
-      SizedBox(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-          child: LinearProgressIndicator(
-            value: statData/100,
-            valueColor: AlwaysStoppedAnimation<Color>(color),
+        SizedBox(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+            child: LinearProgressIndicator(
+              value: statData / 100,
+              valueColor: AlwaysStoppedAnimation<Color>(color),
+            ),
           ),
+          width: 120,
+          height: 7,
         ),
-        width: 120,
-        height: 7,
-        ),                   
       ],
     );
   }

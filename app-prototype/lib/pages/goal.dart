@@ -261,11 +261,32 @@ class _GoalState extends State<Goal> {
                     textStyle:
                         TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
-                  onPressed: () {
-                    // TODO: Save goal
+                  onPressed: () async {
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    prefs.setInt(
+                        'goalEndurance',
+                        algo
+                            .calculateEnduranceFromVomax(algo.calculateVDOT(
+                                runTimes.marathonAverageSeconds[
+                                        secondDropDownList
+                                            .indexOf(secondDropDownValue)]
+                                    .toDouble(),
+                                42195))
+                            .truncate());
+                    prefs.setInt(
+                        'goalSpeed',
+                        algo
+                            .calculateSpeed(
+                                runTimes.marathonAverageSeconds[
+                                        secondDropDownList
+                                            .indexOf(secondDropDownValue)]
+                                    .toDouble(),
+                                42)
+                            .truncate());
                   }),
             ),
-          ),
+          )
         ],
       ),
     );
