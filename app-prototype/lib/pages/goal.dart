@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ninja_id_project/constants/algorithms.dart';
 import 'package:ninja_id_project/models/runtimes.dart';
+import 'package:ninja_id_project/services/Settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Goal extends StatefulWidget {
@@ -17,13 +18,12 @@ class _GoalState extends State<Goal> {
   List<String> secondDropDownList;
   List<int> currentGoal = [100, 100];
 
-  void setDefaults() async {
+  void setDefaults() {
     secondDropDownList = runTimes.marathonAverage;
-    secondDropDownValue = secondDropDownList[0];
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    secondDropDownValue = prefs.getInt('goalIndex') == null
+    secondDropDownValue = Settings.prefs.getInt('goalIndex') == null
         ? secondDropDownList[0]
-        : secondDropDownList[prefs.getInt('goalIndex')];
+        : secondDropDownList[Settings.prefs.getInt('goalIndex')];
+    setState(() {});
   }
 
   @override
@@ -259,9 +259,7 @@ class _GoalState extends State<Goal> {
                         TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
                   onPressed: () async {
-                    SharedPreferences prefs =
-                        await SharedPreferences.getInstance();
-                    prefs.setInt(
+                    Settings.prefs.setInt(
                         'goalEndurance',
                         algo
                             .calculateEnduranceFromVomax(algo.calculateVDOT(
@@ -271,7 +269,7 @@ class _GoalState extends State<Goal> {
                                     .toDouble(),
                                 42195))
                             .truncate());
-                    prefs.setInt(
+                    Settings.prefs.setInt(
                         'goalSpeed',
                         algo
                             .calculateSpeed(
@@ -281,7 +279,7 @@ class _GoalState extends State<Goal> {
                                     .toDouble(),
                                 42)
                             .truncate());
-                    prefs.setInt('goalIndex',
+                    Settings.prefs.setInt('goalIndex',
                         secondDropDownList.indexOf(secondDropDownValue));
                   }),
             ),

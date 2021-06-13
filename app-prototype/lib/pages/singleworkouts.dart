@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ninja_id_project/constants/algorithms.dart';
 import 'package:ninja_id_project/pages/workoutpage.dart';
+import 'package:ninja_id_project/services/Settings.dart';
 import 'package:ninja_id_project/services/training.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,7 +11,7 @@ class SingleWorkout extends StatefulWidget {
 }
 
 class _SingleWorkout extends State<SingleWorkout> {
-  //static Training recommendedTraining;
+
   int speed = 100;
   int endurance = 100;
 
@@ -24,8 +25,8 @@ class _SingleWorkout extends State<SingleWorkout> {
         details: '6 to 8 * 1,000m with no recovery jog(based on stats)',
         description:
             'Maintain a consistent speed, level of intensity and work rate during an exercise session. ',
-        speedlvl: 0,
-        endurancelvl: 2),
+        speedlvl: 2,
+        endurancelvl: 4),
     Training(
         name: "Toes poes",
         color: Colors.red,
@@ -40,18 +41,18 @@ class _SingleWorkout extends State<SingleWorkout> {
     Training(
         name: "Interval jogging",
         color: Colors.yellow,
-        duration: '60 min(based on stats)', //this needs to be based on stats
+        duration: '60 min(based on stats)',
         icon: 'assets/heart.png',
         image: 'assets/tennis1.png',
         details: '6 to 8 * 1,000m with with recovery jog(based on stats)',
         description:
             'Alternate between periods of high-intensity exercise and lower-intensity, active or passive recovery.',
-        speedlvl: 0,
+        speedlvl: 3,
         endurancelvl: 2),
     Training(
         name: "Squats",
         color: Colors.purple,
-        duration: '20 min', //maybe also based on stats?
+        duration: '20 min',
         icon: 'assets/stopwatch.png',
         image: 'assets/runner3.png',
         details: '3 sets of 12',
@@ -67,7 +68,7 @@ class _SingleWorkout extends State<SingleWorkout> {
         image: 'assets/runner3.png',
         details: '6 to 8 * 1,000m with 200m recovery jog',
         description: 'Description',
-        speedlvl: 0,
+        speedlvl: 2,
         endurancelvl: 2),
     Training(
         name: "Tempo Intervals",
@@ -77,17 +78,7 @@ class _SingleWorkout extends State<SingleWorkout> {
         image: 'assets/runner2.png',
         details: '4 to 5 * 2,000m WITH 400m recovery jog',
         description: 'Description',
-        speedlvl: 0,
-        endurancelvl: 1),
-    Training(
-        name: "Yasso 800s",
-        color: Colors.yellow,
-        duration: '20-25 min',
-        icon: 'assets/stopwatch.png',
-        image: 'assets/boxing1.png',
-        details: '8 to 10 * 800m with equal recovery jog',
-        description: 'Description',
-        speedlvl: 2,
+        speedlvl: 3,
         endurancelvl: 1),
     Training(
         name: "Goal Pace Run",
@@ -97,8 +88,8 @@ class _SingleWorkout extends State<SingleWorkout> {
         image: 'assets/tennis1.png',
         details: '8 to 12 miles at marathon pace',
         description: 'Description',
-        speedlvl: 0,
-        endurancelvl: 2),
+        speedlvl: 1,
+        endurancelvl: 4),
     Training(
         name: "Quarters",
         color: Colors.purple,
@@ -108,7 +99,7 @@ class _SingleWorkout extends State<SingleWorkout> {
         details: '8 to 10 * 2 mins with 1-min recovery jog',
         description: 'Description',
         speedlvl: 1,
-        endurancelvl: 1)
+        endurancelvl: 4)
   ];
 
   @override
@@ -117,10 +108,9 @@ class _SingleWorkout extends State<SingleWorkout> {
   }
 
   getData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      speed = prefs.getInt('goalSpeed');
-      endurance = prefs.getInt('goalEndurance');
+      speed = Settings.prefs.getInt('goalSpeed');
+      endurance = Settings.prefs.getInt('goalEndurance');
     });
   }
 
