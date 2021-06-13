@@ -18,15 +18,13 @@ class _GoalState extends State<Goal> {
   List<String> secondDropDownList;
   List<int> currentGoal = [1, 1];
 
-  onPressed() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt('goalSpeed', 50);
-    prefs.setInt('goalEndurance', 50);
-  }
-
-  void setDefaults() {
+  void setDefaults() async {
     secondDropDownList = runTimes.marathonAverage;
     secondDropDownValue = secondDropDownList[0];
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    secondDropDownValue = prefs.getInt('goalIndex') == null
+        ? secondDropDownList[0]
+        : secondDropDownList[prefs.getInt('goalIndex')];
   }
 
   @override
@@ -284,6 +282,8 @@ class _GoalState extends State<Goal> {
                                     .toDouble(),
                                 42)
                             .truncate());
+                    prefs.setInt('goalIndex',
+                        secondDropDownList.indexOf(secondDropDownValue));
                   }),
             ),
           )

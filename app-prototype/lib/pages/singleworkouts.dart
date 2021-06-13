@@ -116,7 +116,7 @@ class _SingleWorkout extends State<SingleWorkout> {
     getData();
   }
 
-  Future<void> getData() async {
+  getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       speed = prefs.getInt('goalSpeed');
