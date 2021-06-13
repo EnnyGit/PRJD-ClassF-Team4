@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ninja_id_project/services/API_intergration.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:ninja_id_project/services/Settings.dart';
 
 class Loading extends StatefulWidget {
   @override
@@ -8,11 +9,10 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+  String accessToken =
+      "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMkM2QksiLCJzdWIiOiI5OVlZOEQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcmFjdCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNjUyMDQzNTcwLCJpYXQiOjE2MjA1MDc1NzB9.pfbgjL6d2rIzlAq37MuL186uxNalfkMfPiLJ0T-SnHI";
 
-  String accessToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMkM2QksiLCJzdWIiOiI5OVlZOEQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcmFjdCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNjUyMDQzNTcwLCJpYXQiOjE2MjA1MDc1NzB9.pfbgjL6d2rIzlAq37MuL186uxNalfkMfPiLJ0T-SnHI";
-
-  void setupFitbitApi() async{
-
+  void setupFitbitApi() async {
     ApiIntergration fitbitApi = ApiIntergration(accessToken: accessToken);
     await fitbitApi.getRestingHeartRate();
     await fitbitApi.getAge();
@@ -25,7 +25,9 @@ class _LoadingState extends State<Loading> {
       'endurance': ApiIntergration.endurance,
       'speed': ApiIntergration.speed,
       'sleep': fitbitApi.sleepScore,
-      'level': ((ApiIntergration.endurance * 0.4 )+ (ApiIntergration.speed * 0.4) + (fitbitApi.activityLevel * 0.2)),
+      'level': ((ApiIntergration.endurance * 0.4) +
+          (ApiIntergration.speed * 0.4) +
+          (fitbitApi.activityLevel * 0.2)),
       'displayName': fitbitApi.displayName,
       'activity': fitbitApi.activityLevel
     });
@@ -35,6 +37,7 @@ class _LoadingState extends State<Loading> {
   void initState() {
     super.initState();
     setupFitbitApi();
+    Settings.getPreferences();
   }
 
   @override

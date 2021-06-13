@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ninja_id_project/constants/algorithms.dart';
 import 'package:ninja_id_project/models/runtimes.dart';
 import 'package:ninja_id_project/pages/home.dart';
+import 'package:ninja_id_project/services/Settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Goal extends StatefulWidget {
@@ -18,15 +19,12 @@ class _GoalState extends State<Goal> {
   List<String> secondDropDownList;
   List<int> currentGoal = [1, 1];
 
-  onPressed() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt('goalSpeed', 50);
-    prefs.setInt('goalEndurance', 50);
-  }
-
   void setDefaults() {
     secondDropDownList = runTimes.marathonAverage;
-    secondDropDownValue = secondDropDownList[0];
+    secondDropDownValue = Settings.prefs.getInt('goalIndex') == null
+        ? secondDropDownList[0]
+        : secondDropDownList[Settings.prefs.getInt('goalIndex')];
+    setState(() {});
   }
 
   @override
@@ -261,8 +259,29 @@ class _GoalState extends State<Goal> {
                     textStyle:
                         TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
-                  onPressed: () {
-                    // TODO: Save goal
+                  onPressed: () async {
+                    Settings.prefs.setInt(
+                        'goalEndurance',
+                        algo
+                            .calculateEnduranceFromVomax(algo.calculateVDOT(
+                                runTimes.marathonAverageSeconds[
+                                        secondDropDownList
+                                            .indexOf(secondDropDownValue)]
+                                    .toDouble(),
+                                42195))
+                            .truncate());
+                    Settings.prefs.setInt(
+                        'goalSpeed',
+                        algo
+                            .calculateSpeed(
+                                runTimes.marathonAverageSeconds[
+                                        secondDropDownList
+                                            .indexOf(secondDropDownValue)]
+                                    .toDouble(),
+                                42)
+                            .truncate());
+                    Settings.prefs.setInt('goalIndex',
+                        secondDropDownList.indexOf(secondDropDownValue));
                   }),
             ),
           ),
