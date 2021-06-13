@@ -45,7 +45,7 @@ class Algorithms {
     }
   }
 
-  int calculateTrainingScore(Training training, List<int> currentGoal){
+  int calculateTrainingScore(Training training, List<int> currentGoal)   {
     int speed = ApiIntergration.speed.truncate();
     int endurance = ApiIntergration.endurance.truncate();
     return training.speedlvl * (currentGoal[0] - speed) + 
@@ -60,7 +60,7 @@ class Algorithms {
       trainingScoreList.add(new Pair(training, calculateTrainingScore(training, currentGoal)));
     }
     
-    trainingScoreList.sort((a, b) => a.two.compareTo(b.two));
+    trainingScoreList.sort((a, b) => b.two.compareTo(a.two));
 
     for(var pair in trainingScoreList){
       sortedList.add(pair.one);
