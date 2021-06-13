@@ -163,9 +163,6 @@ class _GoalState extends State<Goal> {
             child: Text(
                 'The marathon is a long-distance race with an official distance of 42.195 kilometres (26 miles 385 yards),[1] usually run as a road race, but the distance can be covered on trail routes. The event was instituted in commemoration of the fabled run of the Greek soldier Pheidippides, a messenger from the Battle of Marathon to Athens, who reported the victory. The marathon can be completed by running or with a run/walk strategy. There are also wheelchair divisions.'),
           ),
-          SizedBox(
-            height: 30,
-          ),
           Container(
             padding: EdgeInsets.fromLTRB(20, 20, 10, 10),
             height: 150,
@@ -247,6 +244,26 @@ class _GoalState extends State<Goal> {
                   )
                 ],
               ),
+            ),
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          Center(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(30),
+              child: ElevatedButton.icon(
+                  icon: Icon(Icons.save_rounded,
+                      color: Colors.grey[800], size: 30),
+                  label: Text('Save Goal'),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(horizontal: 53, vertical: 10),
+                    textStyle:
+                        TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  ),
+                  onPressed: () {
+                    // TODO: Save goal
+                  }),
             ),
           ),
         ],
