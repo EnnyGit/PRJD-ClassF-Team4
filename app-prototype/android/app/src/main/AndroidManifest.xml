@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ninja_id_project">
    <application
-        android:label="ninja_id_project"
+        android:label="R.E.I. runner"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
